@@ -5,11 +5,12 @@
 #include <stdio.h>
 #include <fstream>
 using namespace std;
-
+void prim_vb(int a[], int n);
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	int n, k=0; ofstream fout; ifstream vod;
+	int* ms;
+	int i=0,n, k=0; ofstream fout; ifstream vod;
 	vod.open("1.txt");//кол чет чисел.
 	while (!vod.eof())
 	{
@@ -17,11 +18,39 @@ int main()
 		if ((n % 2) == 0 && n != 0) { k++; }
 	}
 	vod.close();
-	cout << "k = "<<k;
-
+	ms = new int[k]; // динамический массив
+	vod.open("1.txt");
+	while(i<k)
+	{
+		vod >> n; 
+		if ((n % 2) == 0 && n != 0) { ms[i] = n;i++; }
+	}
+	vod.close();
+	prim_vb(ms, k);
+	for (int z = 0; z < k; z++)
+	{
+		cout <<"ms["<<z<<"] = "<< ms[z] << endl;
+	}
+	
 	return 0;
 }
 
+
+void prim_vb(int a[], int n)
+{
+	int sw = 0, min, i;
+	for (int j = 0; j < n; j++)
+	{
+		min = j; i = j + 1;
+		for (i; i < n; i++)
+		{
+			if (a[i] < a[min]) min = i;
+		}
+		sw = a[min];
+		a[min] = a[j];
+		a[j] = sw;
+	}
+}
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 

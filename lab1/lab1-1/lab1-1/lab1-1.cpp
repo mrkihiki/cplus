@@ -10,7 +10,7 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 	int* ms;
-	int i=0,n, k=0; ofstream fout; ifstream vod;
+	int i = 0, n, k = 0; ofstream fout; ifstream vod;
 	vod.open("1.txt");//кол чет чисел.
 	while (!vod.eof())
 	{
@@ -18,20 +18,25 @@ int main()
 		if ((n % 2) == 0 && n != 0) { k++; }
 	}
 	vod.close();
-	ms = new int[k]; // динамический массив
-	vod.open("1.txt");
-	while(i<k)
-	{
-		vod >> n; 
-		if ((n % 2) == 0 && n != 0) { ms[i] = n;i++; }
+	if (k != 0) {
+		ms = new int[k]; // динамический массив
+		vod.open("1.txt");
+		while (i < k)
+		{
+			vod >> n;
+			if ((n % 2) == 0 && n != 0) { ms[i] = n; i++; }
+		}
+		vod.close();
+		prim_vb(ms, k);
+		for (int z = 0; z < k; z++)
+		{
+			cout << "ms[" << z << "] = " << ms[z] << endl;
+		}
 	}
-	vod.close();
-	prim_vb(ms, k);
-	for (int z = 0; z < k; z++)
+	else
 	{
-		cout <<"ms["<<z<<"] = "<< ms[z] << endl;
+		cout << "нет таких чисел" << endl;
 	}
-	
 	return 0;
 }
 
@@ -51,6 +56,7 @@ void prim_vb(int a[], int n)
 		a[j] = sw;
 	}
 }
+
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 

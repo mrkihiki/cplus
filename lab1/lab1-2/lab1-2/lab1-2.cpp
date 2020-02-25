@@ -27,21 +27,27 @@ int main()
 			n2--;
 		}
 	}
-	Arr2 = new int[n2]; // динамический массив 2
-	for (int i = 0; i < n; i++)
-	{
-		if ((Arr[i] % 2) == 0)
+	if (n2 != 0) {
+		Arr2 = new int[n2]; // динамический массив 2
+		for (int i = 0; i < n; i++)
 		{
-			Arr2[j] = Arr[i];
-			j++;
+			if ((Arr[i] % 2) == 0)
+			{
+				Arr2[j] = Arr[i];
+				j++;
+			}
 		}
+		for (int i = 0; i < n2; i++) { cout << Arr2[i] << " "; }
+		system("pause");
 	}
-	for (int i = 0; i < n2; i++) { cout << Arr2[i] << " "; }
-	system("pause");
-
+	else
+	{
+		cout << "нет четных чисел" << endl;
+	}
 
 	return 0;
 }
+
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
